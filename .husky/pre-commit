@@ -1,5 +1,1 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-pnpm lint
-pnpm typecheck
-pnpm -w test -- --passWithNoTests
+pnpm -w lint && pnpm -w typecheck && pnpm -w test
