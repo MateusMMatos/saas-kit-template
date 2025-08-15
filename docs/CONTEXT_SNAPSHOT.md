@@ -46,6 +46,8 @@ Total: 2
 
 
 ## Últimos commits
+f463a3a docs(context): add context snapshot
+d93f409 docs(context): atualizar CONTEXT_SNAPSHOT.md
 dee213d docs(context): adicionar snapshot automático de contexto
 7db72ee chore(infra): initial template
 af276ab chore(infra): testar hooks
