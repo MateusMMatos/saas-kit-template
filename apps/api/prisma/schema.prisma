@@ -1,0 +1,55 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String?
+  role      Role     @default(MEMBER)
+  mfaSecret String?
+  createdAt DateTime @default(now())
+}
+enum Role { OWNER ADMIN MEMBER }
+
+
+model Plan {
+  id         String   @id @default(cuid())
+  code       String   @unique
+  priceCents Int
+  currency   String   @default("BRL")
+  createdAt  DateTime @default(now())
+  subs       Subscription[]
+}
+
+model Subscription {
+  id               String   @id @default(cuid())
+  organizationId   String
+  planId           String
+  status           String   // active | trialing | past_due | canceled
+  currentPeriodEnd DateTime
+  trialEndsAt      DateTime?
+  externalId       String?
+  createdAt        DateTime @default(now())
+  Plan             Plan     @relation(fields: [planId], references: [id])
+}
+
+model AuditLog {
+  id              String   @id @default(cuid())
+  organizationId  String?
+  userId          String?
+  action          String
+  target          String?
+  ip              String?
+  userAgent       String?
+  metadata        Json?
+  createdAt       DateTime @default(now())
+}
+
+model WebhookEvent {
+  id        String   @id @default(cuid())
+  provider  String
+  eventId   String   @unique   // ex.: Stripe event.id
+  type      String?
+  receivedAt DateTime @default(now())
+  processedAt DateTime?
+  payload   Json?
+}

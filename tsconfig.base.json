@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": ["packages/core/src/*"],
+      "@auth/*": ["packages/auth/src/*"],
+      "@api-client/*": ["packages/api-client/src/*"],
+      "@analytics/*": ["packages/analytics/src/*"],
+      "@notifications/*": ["packages/notifications/src/*"],
+      "@saas-kit/audit": ["packages/audit/src/index.ts"]
+    }
+  }
+}

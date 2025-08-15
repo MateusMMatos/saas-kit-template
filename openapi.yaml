@@ -1,0 +1,45 @@
+openapi: 3.1.0
+info: { title: SaaS API, version: 0.1.0 }
+paths:
+  /auth/register:
+    post:
+      summary: Registra usuário por email/senha
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/RegisterInput' }
+      responses:
+        '201':
+          description: Registrado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthResponse' }
+        '409': { description: Email já usado }
+  /auth/login:
+    post:
+      summary: Login por email/senha
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LoginInput' }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthResponse' }
+components:
+  schemas:
+    RegisterInput:
+      type: object
+      required: [email, password]
+      properties: { email: { type: string, format: email }, password: { type: string, minLength: 8 } }
+    LoginInput:
+      type: object
+      required: [email, password]
+      properties: { email: { type: string, format: email }, password: { type: string } }
+    AuthResponse:
+      type: object
+      properties: { accessToken: { type: string }, refreshToken: { type: string } }

@@ -1,0 +1,25 @@
+name: CD - API
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apps/api/**'
+      - '.github/workflows/cd-api.yml'
+jobs:
+  deploy-api:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm test
+      - name: Deploy API (custom command)
+        if: ${{ secrets.DEPLOY_API_COMMAND != '' }}
+        run: ${{ secrets.DEPLOY_API_COMMAND }}

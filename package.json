@@ -1,0 +1,26 @@
+{
+  "name": "saas-kit",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "contract:mock": "prism mock openapi.yaml",
+    "contract:lint": "redocly lint openapi.yaml",
+    "contract:sdk": "orval --config orval.config.ts",
+    "prisma:dev": "pnpm --filter api prisma migrate dev",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "eslint": "^9.10.0",
+    "husky": "^9.1.5",
+    "orval": "^7.1.1",
+    "prettier": "^3.3.3",
+    "turbo": "^2.0.0"
+  }
+}
