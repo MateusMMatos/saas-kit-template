@@ -27,13 +27,13 @@ Total: 2
 - projects
 - tenant
 
-**Controllers** (6): apps\api\src\health.controller.ts, apps\api\src\projects\projects.controller.ts, apps\api\src\billing\webhook.controller.ts, apps\api\src\billing\billing.controller.ts, apps\api\src\auth\auth.controller.ts, apps\api\src\admin\admin.controller.ts
+**Controllers** (6): apps/api/src/health.controller.ts, apps/api/src/projects/projects.controller.ts, apps/api/src/billing/webhook.controller.ts, apps/api/src/billing/billing.controller.ts, apps/api/src/auth/auth.controller.ts, apps/api/src/admin/admin.controller.ts
 
-**Services** (5): apps\api\src\notifications\notifications.service.ts, apps\api\src\files\files.service.ts, apps\api\src\billing\webhook.service.ts, apps\api\src\billing\billing.service.ts, apps\api\src\auth\auth.service.ts
+**Services** (5): apps/api/src/notifications/notifications.service.ts, apps/api/src/files/files.service.ts, apps/api/src/billing/webhook.service.ts, apps/api/src/billing/billing.service.ts, apps/api/src/auth/auth.service.ts
 
 
 ## Multi-tenant (ocorrências de guard/decorator)
-- apps\api\src\projects\projects.controller.ts
+- apps/api/src/projects/projects.controller.ts
 
 
 ## Feature Flags (encontradas)
@@ -46,6 +46,7 @@ Total: 2
 
 
 ## Últimos commits
+dee213d docs(context): adicionar snapshot automático de contexto
 7db72ee chore(infra): initial template
 af276ab chore(infra): testar hooks
 0fd3154 chore(repo): ok
