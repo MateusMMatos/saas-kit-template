@@ -46,6 +46,8 @@ Total: 2
 
 
 ## Últimos commits
+7625b40 chore(repo): ignorar caches/outputs e node_modules (monorepo)
+dab635b docs(context): atualizar CONTEXT_SNAPSHOT.md
 f463a3a docs(context): add context snapshot
 d93f409 docs(context): atualizar CONTEXT_SNAPSHOT.md
 dee213d docs(context): adicionar snapshot automático de contexto
