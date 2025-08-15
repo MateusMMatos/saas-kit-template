@@ -12,15 +12,18 @@
     "contract:lint": "redocly lint openapi.yaml",
     "contract:sdk": "orval --config orval.config.ts",
     "prisma:dev": "pnpm --filter api prisma migrate dev",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "snapshot:context": "node tools/context-snapshot.mjs"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "eslint": "^9.10.0",
+    "glob": "^11.0.3",
     "husky": "^9.1.5",
     "orval": "^7.1.1",
     "prettier": "^3.3.3",
-    "turbo": "^2.0.0"
+    "turbo": "^2.0.0",
+    "yaml": "^2.8.1"
   }
 }

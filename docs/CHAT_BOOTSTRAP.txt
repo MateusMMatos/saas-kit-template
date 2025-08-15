@@ -1,0 +1,18 @@
+// docs/CHAT_BOOTSTRAP.txt
+Cole o conteúdo abaixo como PRIMEIRA mensagem quando abrir um chat novo com o assistente.
+
+TÍTULO: Bootstrap de contexto do meu monorepo SaaS
+
+=== CONTEXTO DO PROJETO (cole as seções relevantes do docs/CONTEXT_SNAPSHOT.md abaixo) ===
+- Convenções & Padrões
+- Endpoints (OpenAPI) relevantes para a feature
+- Domínios afetados
+- Feature flags envolvidas
+- Últimos commits (5-10 itens)
+- Próximos passos (a lista de TODO atual)
+
+PEDIDO:
+1) Confirme em 5 bullets que entendeu nossos padrões (API-First, TDD/BDD, multi-tenant, flags, segurança, observabilidade).
+2) Gere/atualize o trecho de openapi.yaml para a feature X.
+3) Gere a Test List (unit/integration/e2e) e os testes primeiro (TDD).
+4) Depois, peça minha confirmação antes de implementar o código.
