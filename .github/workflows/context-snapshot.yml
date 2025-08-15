@@ -1,9 +1,9 @@
 # .github/workflows/context-snapshot.yml
 name: Context Snapshot
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch: {}
+  push: { branches: ['**'] }
+  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: write
