@@ -46,6 +46,9 @@ Total: 2
 
 
 ## Últimos commits
+51c18da Merge branch 'main' of https://github.com/MateusMMatos/saas-kit-template
+0793cdb docs(auth): atualiza contrato OpenAPI (3.1.0) com servers/tags e JWT
+391cec8 docs(context): atualizar CONTEXT_SNAPSHOT.md
 7625b40 chore(repo): ignorar caches/outputs e node_modules (monorepo)
 dab635b docs(context): atualizar CONTEXT_SNAPSHOT.md
 f463a3a docs(context): add context snapshot
