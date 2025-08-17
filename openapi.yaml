@@ -1,45 +1,128 @@
 openapi: 3.1.0
-info: { title: SaaS API, version: 0.1.0 }
+info:
+  title: SaaS API
+  version: 0.1.0
+servers:
+  - url: http://localhost:3001
+tags:
+  - name: Auth
+    description: Endpoints de autenticação (email/senha)
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    RegisterInput:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email, examples: ["user@example.com"] }
+        password: { type: string, minLength: 8, examples: ["verysecret1"] }
+
+    LoginInput:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email, examples: ["user@example.com"] }
+        password: { type: string, examples: ["verysecret1"] }
+
+    AuthResponse:
+      type: object
+      required: [accessToken, refreshToken]
+      properties:
+        accessToken: { type: string, description: "JWT de acesso (15m)" }
+        refreshToken: { type: string, description: "JWT de refresh (7d)" }
+      examples:
+        default:
+          value:
+            accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          description: Código de erro estável para automação
+          examples: ["AUTH_INVALID_CREDENTIALS", "AUTH_EMAIL_TAKEN", "VALIDATION_FAILED"]
+        message:
+          type: string
+          description: Mensagem legível
+          examples: ["Credenciais inválidas"]
+      additionalProperties: true
+
 paths:
   /auth/register:
     post:
+      tags: [Auth]
       summary: Registra usuário por email/senha
       requestBody:
         required: true
         content:
           application/json:
             schema: { $ref: '#/components/schemas/RegisterInput' }
+            examples:
+              valido:
+                value: { email: "user@example.com", password: "verysecret1" }
       responses:
         '201':
           description: Registrado
           content:
             application/json:
               schema: { $ref: '#/components/schemas/AuthResponse' }
-        '409': { description: Email já usado }
+        '400':
+          description: Requisição inválida
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              examples:
+                validation:
+                  value: { code: "VALIDATION_FAILED", message: "email deve ser um e-mail válido" }
+        '409':
+          description: Email já usado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              examples:
+                conflict:
+                  value: { code: "AUTH_EMAIL_TAKEN", message: "E-mail já cadastrado" }
+
   /auth/login:
     post:
+      tags: [Auth]
       summary: Login por email/senha
       requestBody:
         required: true
         content:
           application/json:
             schema: { $ref: '#/components/schemas/LoginInput' }
+            examples:
+              valido:
+                value: { email: "user@example.com", password: "verysecret1" }
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema: { $ref: '#/components/schemas/AuthResponse' }
-components:
-  schemas:
-    RegisterInput:
-      type: object
-      required: [email, password]
-      properties: { email: { type: string, format: email }, password: { type: string, minLength: 8 } }
-    LoginInput:
-      type: object
-      required: [email, password]
-      properties: { email: { type: string, format: email }, password: { type: string } }
-    AuthResponse:
-      type: object
-      properties: { accessToken: { type: string }, refreshToken: { type: string } }
+        '400':
+          description: Requisição inválida
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              examples:
+                validation:
+                  value: { code: "VALIDATION_FAILED", message: "email deve ser um e-mail válido" }
+        '401':
+          description: Credenciais inválidas
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              examples:
+                invalid:
+                  value: { code: "AUTH_INVALID_CREDENTIALS", message: "Credenciais inválidas" }
