@@ -46,6 +46,9 @@ Total: 2
 
 
 ## Últimos commits
+0793cdb docs(auth): atualiza contrato OpenAPI (3.1.0) com servers/tags e JWT
+7625b40 chore(repo): ignorar caches/outputs e node_modules (monorepo)
+dab635b docs(context): atualizar CONTEXT_SNAPSHOT.md
 f463a3a docs(context): add context snapshot
 d93f409 docs(context): atualizar CONTEXT_SNAPSHOT.md
 dee213d docs(context): adicionar snapshot automático de contexto
